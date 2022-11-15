@@ -26,25 +26,67 @@
     <h3 class="STARDUST1">2023</h3>
     <h1 class="STARDUST2">CB &amp; TT</h1>
     <h3 class="STARDUST3">L O V E <strong>❤</strong> Y O U</h3>
-    <img class="img" src="img/1E1C711A-DCF0-4696-B30F-A6435626BD04.jpg" alt="JUNO_OKYO" />
+    <img class="img" src="img/1E1C711A-DCF0-4696-B30F-A6435626BD04.jpg" alt="CB&TT" />
+    <img class="img img-active" src="img/927613EE-E7F5-4F1D-9013-05C907552E63.jpg" alt="CB&TT" />
+    <img class="img" src="img/989277A9-C2E8-4A86-880D-2DD63D78FCAC.png" alt="CB&TT" />
+    <img class="img" src="img/067E9F84-6611-44C4-A971-3C14BCB1C52C.jpg" alt="CB&TT" />
+    <img class="img" src="img/64F6764E-8787-43B4-BDF0-756D7742C7FF.jpg" alt="CB&TT" />
     <canvas id="pinkboard"></canvas>
   </div>
-
+  <div class="div-text-content">
+    <h1 class="text-content text-content-active">Gửi em</h1>
+    <h1 class="text-content">Người con gái</h1>
+    <h1 class="text-content">Mà anh thương</h1>
+    <h1 class="text-content">Yêu em</h1>
+    <h1 class="text-content">Trần Thị Thanh Thảo</h1>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/particle.js"></script>
   <script src="js/universe.js"></script>
-  <div class="center-text" , style="background-color:rgb(0, 0, 0);
-        width: 100%;
-        color: rgb(225, 12, 168);
-        height:100%;
-        font-size: 31px;
-        font-style: italic;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 5px;
-        text-align: center;">Anh Yêu Em</div>
+  <script>
+    $(document).ready(function () {
+      setInterval(handlerClassImg, 10000);
+      setInterval(handlerClassText, 3000);
+      var audio = new Audio('audio/NgayDauTienNhacChuong-DucPhuc-7465502.mp3');
+      window.addEventListener('click', function (e) {
+        if (e) {
+          audio.loop = true;
+          if (audio.paused) {
+            audio.play();
+          } else {
+            audio.pause();
+          }
+        }
+      });
+
+      function handlerClassImg() {
+        var elements = $('.img');
+        var index = 0;
+        for (var i = 0; i < elements.length; i++) {
+          if ($(elements[i]).hasClass('img-active')) {
+            index = i;
+          }
+        }
+
+        $('.img').removeClass('img-active');
+        $(elements[index == elements.length - 1 ? 0 : index + 1]).addClass('img-active');
+      }
+
+      function handlerClassText() {
+        var elements = $('.text-content');
+        var indexT = 0;
+        for (var i = 0; i < elements.length; i++) {
+          if ($(elements[i]).hasClass('text-content-active')) {
+            indexT = i;
+          }
+        }
+
+        $('.text-content').removeClass('text-content-active');
+        $(elements[indexT == elements.length - 1 ? 0 : indexT + 1]).addClass('text-content-active');
+      }
+    });
+  </script>
 </body>
 
 </html>
