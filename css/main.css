@@ -97,28 +97,10 @@ canvas {
 .div-text-content {
   z-index: 1;
   position: relative;
-  top: 44%;
+  bottom: -299px;
   width: 400px;
   height: 50px;
   text-align: center;
-}
-
-@media only screen and (max-width: 1280px) {
-  .div-text-content {
-    top: 34%;
-  }
-}
-
-@media only screen and (max-width: 1080px) {
-  .div-text-content {
-    top: 20%;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .div-text-content {
-    top: 17%;
-  }
 }
 
 .text-content {
