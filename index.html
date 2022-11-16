@@ -36,9 +36,27 @@
   <div class="div-text-content">
     <h1 class="text-content text-content-active">Gửi em</h1>
     <h1 class="text-content">Người con gái</h1>
-    <h1 class="text-content">Mà anh thương</h1>
+    <h1 class="text-content">Mà anh thương nhớ</h1>
     <h1 class="text-content">Yêu em</h1>
-    <h1 class="text-content">Trần Thị Thanh Thảo</h1>
+    <!-- <h1 class="text-content">Trần Thị Thanh Thảo</h1> -->
+    <h1 class="text-content">
+      <span>T</span>
+      <span>r</span>
+      <span>ầ</span>
+      <span>n</span>
+      <span>T</span>
+      <span>h</span>
+      <span>ị</span>
+      <span>T</span>
+      <span>h</span>
+      <span>a</span>
+      <span>n</span>
+      <span>h</span>
+      <span>T</span>
+      <span>h</span>
+      <span>ả</span>
+      <span>o</span>
+    </h1>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/main.js"></script>
@@ -47,7 +65,7 @@
   <script>
     $(document).ready(function () {
       setInterval(handlerClassImg, 10000);
-      setInterval(handlerClassText, 3000);
+      const textInterval = setInterval(handlerClassText, 3000);
       var audio = new Audio('audio/NgayDauTienNhacChuong-DucPhuc-7465502.mp3');
       window.addEventListener('click', function (e) {
         if (e) {
@@ -91,9 +109,25 @@
             indexT = i;
           }
         }
+        if (indexT == elements.length - 1) {
+          clearInterval(textInterval);
+          setTimeout(__ => {
+            $('.text-content').removeClass('text-content-active');
+            $(elements[0]).addClass('text-content-active');
+            setInterval(handlerClassText, 3000);
+          }, 5000);
+        } else {
+          if (indexT == elements.length - 2) {
+            setTimeout(_ => {
+              $(elements[indexT + 1]).addClass('box');
+            });
+          } else {
+            $('.text-content').removeClass('box');
+          }
 
-        $('.text-content').removeClass('text-content-active');
-        $(elements[indexT == elements.length - 1 ? 0 : indexT + 1]).addClass('text-content-active');
+          $('.text-content').removeClass('text-content-active');
+          $(elements[indexT == elements.length - 1 ? 0 : indexT + 1]).addClass('text-content-active');
+        }
       }
     });
   </script>
