@@ -97,15 +97,22 @@ canvas {
 .div-text-content {
   z-index: 1;
   position: relative;
-  bottom: -370px;
+  bottom: -378px;
   width: 600px;
   height: 50px;
   text-align: center;
+  font-family: "Montserrat";
 }
 
 @media only screen and (max-width: 1366px) and (max-height: 768px) {
   .div-text-content {
-    bottom: -290px;
+    bottom: -300px;
+  }
+}
+
+@media only screen and (max-width: 1179px) {
+  .div-text-content {
+    bottom: -310px;
   }
 }
 
