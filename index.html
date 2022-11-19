@@ -23,9 +23,9 @@
   <!-- </div> -->
   <div class="title">
     <!-- EDIT HERE -->
-    <h3 class="STARDUST1">2023</h3>
-    <h1 class="STARDUST2">CB &amp; TT</h1>
-    <h3 class="STARDUST3">L O V E <strong>❤</strong> Y O U</h3>
+    <h3 class="STARDUST1 text-shadow">2023</h3>
+    <h1 class="STARDUST2 text-shadow">CB &amp; TT</h1>
+    <h3 class="STARDUST3 text-shadow">L O V E <strong class="icon-heart text-shadow">❤</strong> Y O U</h3>
     <img class="img img-active" src="img/1E1C711A-DCF0-4696-B30F-A6435626BD04.jpg" alt="CB&TT" />
     <img class="img" src="img/927613EE-E7F5-4F1D-9013-05C907552E63.jpg" alt="CB&TT" />
     <img class="img" src="img/989277A9-C2E8-4A86-880D-2DD63D78FCAC.png" alt="CB&TT" />
@@ -34,12 +34,12 @@
     <canvas id="pinkboard"></canvas>
   </div>
   <div class="div-text-content">
-    <h1 class="text-content text-content-active">Gửi em</h1>
-    <h1 class="text-content">Người con gái</h1>
-    <h1 class="text-content">Mà anh thương nhớ</h1>
-    <h1 class="text-content">Yêu em</h1>
+    <h1 class="text-content text-shadow text-content-active">Gửi em</h1>
+    <h1 class="text-content text-shadow">Người con gái</h1>
+    <h1 class="text-content text-shadow">Mà anh thương nhớ</h1>
+    <h1 class="text-content text-shadow">Yêu em</h1>
     <!-- <h1 class="text-content">Trần Thị Thanh Thảo</h1> -->
-    <h1 class="text-content">
+    <h1 class="text-content text-shadow">
       <span>T</span>
       <span>r</span>
       <span>ầ</span>
@@ -58,6 +58,14 @@
       <span>o</span>
     </h1>
   </div>
+  <script>
+    var colorHeart = "#ea80b0";
+    var colorTS = "#ff006c";
+    var colorTSB = "#ff417d";
+    var arrColor = ["#ea80b0", "#ed8582", "#9081e9", "#82eba2", "#ecef81"];
+    var arrTextShadow = ["#ff006c", "#ff0a00", "#2600ff", "#00ff4f", "#f9ff00"];
+    var arrTextShadowB = ["#ff417d", "#fb3e3e", "#5c40f9", "#42ff7d", "#faff3c"];
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/particle.js"></script>
@@ -109,13 +117,30 @@
             indexT = i;
           }
         }
+
         if (indexT == elements.length - 1) {
-          clearInterval(textInterval);
-          setTimeout(__ => {
-            $('.text-content').removeClass('text-content-active');
-            $(elements[0]).addClass('text-content-active');
-            setInterval(handlerClassText, 3000);
-          }, 5000);
+          // clearInterval(textInterval);
+          // setTimeout(__ => {
+          $('.text-content').removeClass('text-content-active');
+          $(elements[0]).addClass('text-content-active');
+          const idx = arrColor.indexOf(colorHeart);
+          if (arrColor[idx] == arrColor[arrColor.length - 1]) {
+            colorHeart = arrColor[0];
+            colorTS = arrTextShadow[0];
+            colorTSB = arrTextShadowB[0];
+          }
+          else {
+            colorHeart = arrColor[idx + 1];
+            colorTS = arrTextShadow[idx + 1];
+            colorTSB = arrTextShadowB[idx + 1];
+          }
+
+          setTimeout(_ => {
+            $('.icon-heart').css({ color: colorHeart });
+            $('.text-shadow').css({ textShadow: '0 0 10px ' + colorTS + ', 0 0 20px ' + colorTS + ', 0 0 30px ' + colorTS + ', 0 0 40px ' + colorTSB + ', 0 0 70px ' + colorTSB + ', 0 0 80px ' + colorTSB + ', 0 0 100px ' + colorTSB + ', 0 0 150px ' + colorTSB });
+          });
+          //   setInterval(handlerClassText, 3000);
+          // }, 5000);
         } else {
           if (indexT == elements.length - 2) {
             setTimeout(_ => {
