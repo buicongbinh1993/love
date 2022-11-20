@@ -258,7 +258,6 @@ var ParticlePool = (function () {
       );
     }
 
-    console.log(colorHeart);
     image = reDrawHeart(colorHeart);
     // update and draw particles
     particles.update(deltaTime);

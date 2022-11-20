@@ -65,6 +65,14 @@
     var arrColor = ["#ea80b0", "#ed8582", "#9081e9", "#82eba2", "#ecef81"];
     var arrTextShadow = ["#ff006c", "#ff0a00", "#2600ff", "#00ff4f", "#f9ff00"];
     var arrTextShadowB = ["#ff417d", "#fb3e3e", "#5c40f9", "#42ff7d", "#faff3c"];
+    var arrAudio = [
+      "audio/NgayDauTienNhacChuong-DucPhuc-7465502.mp3",
+      "audio/Nhac-Chuong-Duy-Nhat-Trong-Anh-Hoang-Lan-Jang-Nguyen.mp3",
+      "audio/Nhac Chuong Yeu Em Rat Nhieu - Hoang Ton.mp3",
+      "audio/Ngay Hanh Phuc Nhac Chuong - Bang Cuong (NhacPro.net).mp3",
+      "audio/Nhac Chuong Hanh Phuc Cuoi Cung - Truong Viet Thai.mp3"
+    ];
+    var currA = "";
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="js/main.js"></script>
@@ -74,7 +82,7 @@
     $(document).ready(function () {
       setInterval(handlerClassImg, 10000);
       const textInterval = setInterval(handlerClassText, 3000);
-      var audio = new Audio('audio/NgayDauTienNhacChuong-DucPhuc-7465502.mp3');
+      var audio = new Audio();
       window.addEventListener('click', function (e) {
         if (e) {
           playAudio();
@@ -88,12 +96,20 @@
       });
 
       function playAudio() {
-        audio.loop = true;
-        if (audio.paused) {
-          audio.play();
+        const idxAudio = arrAudio.indexOf(currA);
+        if (!currA || arrAudio[idxAudio] == arrAudio[arrAudio.length - 1]) {
+          currA = arrAudio[0];
         } else {
-          audio.pause();
+          currA = arrAudio[idxAudio + 1];
         }
+        if (audio) {
+          audio.src = currA;
+        } else {
+          audio = new Audio(currA);
+        }
+
+        // audio.loop = true;
+        audio.play();
       }
 
       function handlerClassImg() {
@@ -107,6 +123,9 @@
 
         $('.img').removeClass('img-active');
         $(elements[index == elements.length - 1 ? 0 : index + 1]).addClass('img-active');
+        // if (index == elements.length - 1) {
+        //   playAudio();
+        // }
       }
 
       function handlerClassText() {
@@ -119,8 +138,6 @@
         }
 
         if (indexT == elements.length - 1) {
-          // clearInterval(textInterval);
-          // setTimeout(__ => {
           $('.text-content').removeClass('text-content-active');
           $(elements[0]).addClass('text-content-active');
           const idx = arrColor.indexOf(colorHeart);
@@ -139,8 +156,6 @@
             $('.icon-heart').css({ color: colorHeart });
             $('.text-shadow').css({ textShadow: '0 0 10px ' + colorTS + ', 0 0 20px ' + colorTS + ', 0 0 30px ' + colorTS + ', 0 0 40px ' + colorTSB + ', 0 0 70px ' + colorTSB + ', 0 0 80px ' + colorTSB + ', 0 0 100px ' + colorTSB + ', 0 0 150px ' + colorTSB });
           });
-          //   setInterval(handlerClassText, 3000);
-          // }, 5000);
         } else {
           if (indexT == elements.length - 2) {
             setTimeout(_ => {
