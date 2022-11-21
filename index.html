@@ -84,13 +84,13 @@
       const textInterval = setInterval(handlerClassText, 3000);
       var audio = new Audio();
       window.addEventListener('click', function (e) {
-        if (e) {
+        if (e && !(navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0)) {
           playAudio();
         }
       });
 
       window.addEventListener('touchstart', function (e) {
-        if (e) {
+        if (e && navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
           playAudio();
         }
       });
