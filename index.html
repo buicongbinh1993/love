@@ -89,6 +89,12 @@
         }
       });
 
+      window.addEventListener('touchstart', function (e) {
+        if (e) {
+          playAudio();
+        }
+      });
+
       function playAudio() {
         const idxAudio = arrAudio.indexOf(currA);
         if (!currA || arrAudio[idxAudio] == arrAudio[arrAudio.length - 1]) {
