@@ -25,7 +25,7 @@
     <!-- EDIT HERE -->
     <h3 class="STARDUST1 text-shadow">2023</h3>
     <h1 class="STARDUST2 text-shadow">CB &amp; TT</h1>
-    <h3 class="STARDUST3 text-shadow">L O V E <strong class="icon-heart text-shadow">❤</strong> Y O U</h3>
+    <h3 class="STARDUST3 text-shadow">L O V E <strong class="icon-heart text-shadow">&#10084;</strong> Y O U</h3>
     <img class="img img-active" src="img/1E1C711A-DCF0-4696-B30F-A6435626BD04.jpg" alt="CB&TT" />
     <img class="img" src="img/927613EE-E7F5-4F1D-9013-05C907552E63.jpg" alt="CB&TT" />
     <img class="img" src="img/989277A9-C2E8-4A86-880D-2DD63D78FCAC.png" alt="CB&TT" />
@@ -62,9 +62,9 @@
     var colorHeart = "#ea80b0";
     var colorTS = "#ff006c";
     var colorTSB = "#ff417d";
-    var arrColor = ["#ea80b0", "#ed8582", "#9081e9", "#82eba2", "#ecef81"];
-    var arrTextShadow = ["#ff006c", "#ff0a00", "#2600ff", "#00ff4f", "#f9ff00"];
-    var arrTextShadowB = ["#ff417d", "#fb3e3e", "#5c40f9", "#42ff7d", "#faff3c"];
+    var arrColor = ["#ea80b0", "#9081e9", "#82eba2", "#ed8582", "#ecef81"];
+    var arrTextShadow = ["#ff006c", "#2600ff", "#00ff4f", "#ff0a00", "#f9ff00"];
+    var arrTextShadowB = ["#ff417d", "#5c40f9", "#42ff7d", "#fb3e3e", "#faff3c"];
     var arrAudio = [
       "audio/NgayDauTienNhacChuong-DucPhuc-7465502.mp3",
       "audio/Nhac-Chuong-Duy-Nhat-Trong-Anh-Hoang-Lan-Jang-Nguyen.mp3",
@@ -89,12 +89,6 @@
         }
       });
 
-      window.addEventListener('touchstart', function (e) {
-        if (e) {
-          playAudio();
-        }
-      });
-
       function playAudio() {
         const idxAudio = arrAudio.indexOf(currA);
         if (!currA || arrAudio[idxAudio] == arrAudio[arrAudio.length - 1]) {
@@ -102,13 +96,8 @@
         } else {
           currA = arrAudio[idxAudio + 1];
         }
-        if (audio) {
-          audio.src = currA;
-        } else {
-          audio = new Audio(currA);
-        }
 
-        // audio.loop = true;
+        audio.src = currA;
         audio.play();
       }
 
@@ -123,9 +112,9 @@
 
         $('.img').removeClass('img-active');
         $(elements[index == elements.length - 1 ? 0 : index + 1]).addClass('img-active');
-        // if (index == elements.length - 1) {
-        //   playAudio();
-        // }
+        if (audio.currentTime > 0 && audio.paused) {
+          playAudio();
+        }
       }
 
       function handlerClassText() {
@@ -141,21 +130,21 @@
           $('.text-content').removeClass('text-content-active');
           $(elements[0]).addClass('text-content-active');
           const idx = arrColor.indexOf(colorHeart);
-          if (arrColor[idx] == arrColor[arrColor.length - 1]) {
-            colorHeart = arrColor[0];
-            colorTS = arrTextShadow[0];
-            colorTSB = arrTextShadowB[0];
-          }
-          else {
-            colorHeart = arrColor[idx + 1];
-            colorTS = arrTextShadow[idx + 1];
-            colorTSB = arrTextShadowB[idx + 1];
-          }
-
           setTimeout(_ => {
+            if (arrColor[idx] == arrColor[arrColor.length - 1]) {
+              colorHeart = arrColor[0];
+              colorTS = arrTextShadow[0];
+              colorTSB = arrTextShadowB[0];
+            }
+            else {
+              colorHeart = arrColor[idx + 1];
+              colorTS = arrTextShadow[idx + 1];
+              colorTSB = arrTextShadowB[idx + 1];
+            }
+
             $('.icon-heart').css({ color: colorHeart });
             $('.text-shadow').css({ textShadow: '0 0 10px ' + colorTS + ', 0 0 20px ' + colorTS + ', 0 0 30px ' + colorTS + ', 0 0 40px ' + colorTSB + ', 0 0 70px ' + colorTSB + ', 0 0 80px ' + colorTSB + ', 0 0 100px ' + colorTSB + ', 0 0 150px ' + colorTSB });
-          });
+          }, 800);
         } else {
           if (indexT == elements.length - 2) {
             setTimeout(_ => {
